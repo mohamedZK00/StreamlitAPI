@@ -1,7 +1,6 @@
+import pickle
 import streamlit as st
 from streamlit_option_menu import option_menu
-import pickle
-
 
 # Prediction Model
 Model_1 = pickle.load(open('B:/ML-Streamlit/mdel87%.PLK', 'rb'))

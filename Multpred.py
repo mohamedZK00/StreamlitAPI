@@ -1,4 +1,5 @@
-import pickle
+#import pickle
+import joblib
 import streamlit as st
 from streamlit_option_menu import option_menu
 
@@ -6,9 +7,13 @@ from streamlit_option_menu import option_menu
 #Model_1 = pickle.load(open('mdel87%.PLK'))
 
 # فتح الملف بنمط 'rb' (قراءة بنمط ثنائي)
-with open('mdel87%.PLK', 'rb') as file:
-    Model_1 = pickle.load(file)
+#with open('mdel87%.PLK', 'rb') as file:
+  #  Model_1 = pickle.load(file)
 
+
+# فتح الملف بنمط 'rb' (قراءة بنمط ثنائي)
+with open('mdel87%.PLK', 'rb') as file:
+    Model_1 = joblib.load(file)
 
 # Classification Model
 #Model_2 = pickle.load(open('B:\\ML-Streamlit\\GBRmodel_99%_3.PLK', 'rb'))

@@ -8,7 +8,7 @@ from streamlit_option_menu import option_menu
 # فتح الملف بنمط 'rb' (قراءة بنمط ثنائي)
 #with open('mdel87%.PLK', 'rb') as file:
   #  Model_1 = pickle.load(file)
- Model_1 = pickle.load('Streamlit/mdel87%.PLK')
+Model_1 = pickle.load('Streamlit/mdel87%.PLK')
 # Classification Model
 #Model_2 = pickle.load(open('B:\\ML-Streamlit\\GBRmodel_99%_3.PLK', 'rb'))
 

@@ -1,5 +1,6 @@
 import os
-import pickle
+#import pickle
+from joblib import load
 import streamlit as st
 from streamlit_option_menu import option_menu
 
@@ -11,7 +12,9 @@ from streamlit_option_menu import option_menu
   #  Model_1 = pickle.load(file)
 
 working_dir = os.path.dirname(os.path.abspath(__file__))
-Model_1 =pickle.load(open(f'{working_dir}/Saved_model/mdel87%.PLK','rb'))
+Model_1 = load(f'{working_dir}/Saved_model/mdel87%.PLK')
+
+#Model_1 =pickle.load(open(f'{working_dir}/Saved_model/mdel87%.PLK','rb'))
 
 #with open('B:/ML-Streamlit/mdel87%.PLK', 'rb') as file:
  #   Model_1 = pickle.load(file)

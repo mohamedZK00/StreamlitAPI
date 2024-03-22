@@ -3,7 +3,7 @@ import streamlit as st
 from streamlit_option_menu import option_menu
 
 # Prediction Model
-Model_1 = pickle.load(open('B:\\ML-Streamlit\\GBRmodel_99%_3.PLK', 'rb'))
+Model_1 = pickle.load(open('B:\\ML-Streamlit\\mdel87%.PLK', 'rb'))
 
 # فتح الملف بنمط 'rb' (قراءة بنمط ثنائي)
 #with open('mdel87%.PLK', 'rb') as file:

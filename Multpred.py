@@ -19,7 +19,7 @@ from streamlit_option_menu import option_menu
 #Model_1 = pickle.load(open('GBRmodel.plk','rb'))
 try:
     with open('GBRmodel.plk', 'rb') as file:
-        Model_1 = pickle.load(file)
+        Model = pickle.load(file)
 except Exception as e:
     print("حدث خطأ أثناء فتح الملف:", e)
 
@@ -50,7 +50,7 @@ if selected == 'Predict Student Grades':
     
     #creating a button for prediction
     if st.button('Grade prediction'):
-        grd_pred = e.predict([[ grade_month_1 , grade_month_2 , grade_month_3 ]])
+        grd_pred = Model.predict([[ grade_month_1 , grade_month_2 , grade_month_3 ]])
         
         predicted_grade = {"grd_pred": round(grd_pred[0], 1)}  
         max_grade=100
@@ -74,7 +74,7 @@ if selected == 'Classification of Student Grades':
     
     #creating a button for prediction
     if st.button('Grade Classification '):
-       ls_pred = e.predict([[ grade_month_1 , grade_month_2 , grade_month_3 ]])
+       ls_pred = Model.predict([[ grade_month_1 , grade_month_2 , grade_month_3 ]])
        
        
        def classify_grade(grade):

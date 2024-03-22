@@ -1,5 +1,6 @@
 #import os
-import pickle
+#import pickle
+from pickle_mixin import PickleMixin
 import streamlit as st
 from streamlit_option_menu import option_menu
 
@@ -17,9 +18,21 @@ from streamlit_option_menu import option_menu
 
 
 #Model_1 = pickle.load(open('GBRmodel.plk','rb'))
+#try:
+   # with open('GBRmodel.plk', 'rb') as file:
+        #Model = pickle.load(file)
+#except Exception as e:
+    #print("حدث خطأ أثناء فتح الملف:", e)
+
+class Model(PickleMixin):
+    def __init__(self):
+        self.data = []
+
+# تحميل النموذج
 try:
     with open('GBRmodel.plk', 'rb') as file:
-        Model = pickle.load(file)
+        Model = Model()
+        Model.load(file)
 except Exception as e:
     print("حدث خطأ أثناء فتح الملف:", e)
 

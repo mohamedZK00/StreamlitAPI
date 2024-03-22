@@ -10,7 +10,8 @@ from streamlit_option_menu import option_menu
 #with open('mdel87%.PLK', 'rb') as file:
   #  Model_1 = pickle.load(file)
 
-working_dir = os.path.dirname(os.path.adspath(__file__))
+#working_dir = os.path.dirname(os.path.adspath(__file__))
+working_dir = os.path.dirname(os.path.abspath(__file__))
 Model_1 =pickle.load(open(f'{working_dir}/ML-Streamlit/mdel87%.PLK','rb'))
 
 #with open('B:/ML-Streamlit/mdel87%.PLK', 'rb') as file:

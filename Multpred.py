@@ -16,7 +16,7 @@ from streamlit_option_menu import option_menu
 #Model_1 =pickle.load(open('Saved_model/mdel87%.PLK','rb'))
 
 
-Model_1 = pickle.load(open('GBRmode.plk','rb'))
+Model_1 = pickle.load(open('GBRmodel.plk','rb'))
 
 #with open('GBRmode.plk', 'rb') as f:
 #    Model_1 = pickle.load(f)

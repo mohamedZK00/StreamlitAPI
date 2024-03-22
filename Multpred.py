@@ -18,7 +18,7 @@ from streamlit_option_menu import option_menu
 
 #Model_1 =pickle.load(open('Saved_model/mdel87%.PLK','rb'))
 
-with open('GBRmodel87%.PLK', 'rb') as f:
+with open('GBRmode.plk', 'rb') as f:
     Model_1 = pickle.load(f)
 # Classification Model
 #Model_2 = pickle.load(open('B:\\ML-Streamlit\\GBRmodel_99%_3.PLK', 'rb'))

@@ -16,7 +16,12 @@ from streamlit_option_menu import option_menu
 #Model_1 =pickle.load(open('Saved_model/mdel87%.PLK','rb'))
 
 
-Model_1 = pickle.load(open('GBRmodel.plk','rb'))
+#Model_1 = pickle.load(open('GBRmodel.plk','rb'))
+try:
+    with open('GBRmodel.plk', 'rb') as file:
+        Model_1 = pickle.load(file)
+except Exception as e:
+    print("حدث خطأ أثناء فتح الملف:", e)
 
 #with open('GBRmode.plk', 'rb') as f:
 #    Model_1 = pickle.load(f)

@@ -7,7 +7,7 @@ from streamlit_option_menu import option_menu
 # Prediction Model
 #Model_1 = pickle.load(open('StreamlitAPI/mdel87%.PLK', 'rb'))
 
-pk_path = Path(__file__).parents[1] / 'Saved_model/mdel87%.PLK'
+pk_path = Path(__file__).parents[1] / 'Saved_model' / 'mdel87%.PLK'
 Model_1 = open(pkl_path, 'rb')
 Model_1 = pickle.load(Model_1)
 Model_1_pickle.close()

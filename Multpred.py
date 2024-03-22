@@ -18,7 +18,8 @@ from streamlit_option_menu import option_menu
 
 #Model_1 = pickle.load(open('GBRmodel.plk','rb'))
 try:
-    Model = pickle.load(open('GBRmodel.plk','rb'))
+    model = open("GBRmodel.plk","rb")
+    Model = pickle.load(model)
 except Exception as e:
     print("حدث خطأ أثناء فتح الملف:", e)
 

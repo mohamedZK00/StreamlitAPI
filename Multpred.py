@@ -1,19 +1,25 @@
+#import os
 import pickle
 import streamlit as st
 from streamlit_option_menu import option_menu
 
 # Prediction Model
-Model_1 = pickle.load(open('StreamlitAPI/mdel87%.PLK', 'rb'))
+#Model_1 = pickle.load(open('StreamlitAPI/mdel87%.PLK', 'rb'))
+
+
 
 # فتح الملف بنمط 'rb' (قراءة بنمط ثنائي)
 #with open('mdel87%.PLK', 'rb') as file:
   #  Model_1 = pickle.load(file)
 
 #working_dir = os.path.dirname(os.path.abspath(__file__))
-#Model_1 =pickle.load(open(f'{working_dir}/B:/ML-Streamlit/mdel87%.PLK','rb'))
+#Model_1 =pickle.load(open('Saved_model/mdel87%.PLK','rb'))
 
-#with open('B:/ML-Streamlit/mdel87%.PLK', 'rb') as file:
- #   Model_1 = pickle.load(file)
+
+#Model_1 =pickle.load(open('Saved_model/mdel87%.PLK','rb'))
+
+with open('Saved_model/mdel87%.PLK', 'rb') as file:
+    Model_1 = pickle.load(file)
 # Classification Model
 #Model_2 = pickle.load(open('B:\\ML-Streamlit\\GBRmodel_99%_3.PLK', 'rb'))
 

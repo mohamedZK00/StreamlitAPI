@@ -13,7 +13,7 @@ from streamlit_option_menu import option_menu
   #  Model_1 = pickle.load(file)
 
 #working_dir = os.path.dirname(os.path.abspath(__file__))
-Model =pickle.load(open('GBRmodel.plk','rb'))
+Model = pickle.load(open('StreamlitAPI://GBRmodel.plk','rb'))
 
 
 #Model_1 = pickle.load(open('GBRmodel.plk','rb'))

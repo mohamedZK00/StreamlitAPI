@@ -1,4 +1,4 @@
-#import os
+import os
 import pickle
 import streamlit as st
 from streamlit_option_menu import option_menu
@@ -12,8 +12,10 @@ from streamlit_option_menu import option_menu
 #with open('mdel87%.PLK', 'rb') as file:
   #  Model_1 = pickle.load(file)
 
-#working_dir = os.path.dirname(os.path.abspath(__file__))
-Model = pickle.load(open('GBRnew87.sav','rb'))
+working_dir = os.path.dirname(os.path.realpath(__file__))
+model_path = os.path.join(working_dir ,'GBRnew87.sav')
+
+Model = pickle.load(open(model_path,'rb'))
 
 
 

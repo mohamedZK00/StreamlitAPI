@@ -13,7 +13,7 @@ from streamlit_option_menu import option_menu
   #  Model_1 = pickle.load(file)
 
 working_dir = os.path.dirname(os.path.realpath(__file__))
-model_path = os.path.join(working_dir ,'GBRnew87.sav')
+model_path = os.path.join(working_dir ,'gbr93.sav')
 
 with open(model_path, 'rb')as f:
   Model = pickle.load(f)

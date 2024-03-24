@@ -112,6 +112,3 @@ if selected == 'Classification of Student Grades':
        clas_grades = [classify_grade(grade) for grade in classified_grades ]
        st.success( clas_grades)
         
-        
-        
-    

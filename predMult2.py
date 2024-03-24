@@ -15,7 +15,9 @@ from streamlit_option_menu import option_menu
 working_dir = os.path.dirname(os.path.realpath(__file__))
 model_path = os.path.join(working_dir ,'GBRnew87.sav')
 
-Model = pickle.load(open(model_path,'rb'))
+with open(model_path, 'rb')as f:
+  Model = pickle.load(f)
+#Model = pickle.load(open(model_path,'rb'))
 
 
 

@@ -1,7 +1,7 @@
-Streamlit==1.30.0
-scikit-learn==1.2.2
-streamlit-option-menu==0.3.12
-pickleshare==0.7.5
-numpy==1.26.4
-
+Streamlit
+scikit-learn
+streamlit-option-menu
+pickleshare
+numpy
+os
 

@@ -103,14 +103,12 @@ if selected == 'Classification of Student Grades':
 if selected == 'Grades Prediction Passing & Failing For All Students':
 
 
-    import streamlit as st
+  
     import pandas as pd
     import numpy as np
-    import pickle
-    import matplotlib.pyplot as plt
+       import matplotlib.pyplot as plt
     
     # Load the model
-    model = pickle.load(open(r'F:\RFR_MZ_New.pik', 'rb'))
     
     # Create random grades for students
     num_students = 1000
@@ -183,7 +181,7 @@ if selected == 'Grades Prediction Passing & Failing For All Students':
             st.error("Selected dataset contains NaN values. Please clean the data.")
         else:
             # Make predictions
-            result = model.predict(selected_data_array)
+            result = Model.predict(selected_data_array)
             
             # Calculate pass and fail percentages
             pass_count = np.sum(result >= 50)

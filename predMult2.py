@@ -175,7 +175,7 @@ if selected == 'Grades Prediction Passing & Failing For All Students':
         # Ensure there are no NaN values
        if np.any(np.isnan(selected_data_array)):
           st.error("Selected dataset contains NaN values. Please clean the data.")
-      else:
+       else:
             # Make predictions
           result = Model.predict(selected_data_array)
             

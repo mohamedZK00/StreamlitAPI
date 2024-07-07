@@ -3,5 +3,7 @@ scikit-learn
 streamlit-option-menu
 pickleshare
 numpy
+pandas
+matplotlib
 
 

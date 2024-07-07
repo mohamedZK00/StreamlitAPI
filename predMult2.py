@@ -3,6 +3,11 @@ import pickle
 import streamlit as st
 from streamlit_option_menu import option_menu
 
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+
 # Prediction Model
 working_dir = os.path.dirname(os.path.realpath(__file__))
 model_path = os.path.join(working_dir ,'gbR94.sav')
@@ -101,9 +106,7 @@ if selected == 'Classification of Student Grades':
 
 if selected == 'Grades Prediction Passing & Failing For All Students':
     
-    import pandas as pd
-    import numpy as np
-    import matplotlib.pyplot as plt
+    
     
     
     # Create random grades for students

@@ -166,63 +166,63 @@ if selected == 'Grades Prediction Passing & Failing For All Students':
     
     select = st.selectbox('Select Your Set Of Grades', list(orignal_list.keys()))
      
-  if st.button('Predict'):
-     selected_data = orignal_list[select]
-      
-      # Ensure the data is in the correct shape
-     selected_data_array = selected_data.values
-      
-      # Ensure there are no NaN values
-     if np.any(np.isnan(selected_data_array)):
-        st.error("Selected dataset contains NaN values. Please clean the data.")
-    else:
-          # Make predictions
-        result = Model.predict(selected_data_array)
-          
-          # Calculate pass and fail percentages
-        pass_count = np.sum(result >= 50)
-        fail_count = np.sum(result < 50)
-          
-        total_count = len(result)
-          
-        pass_percentage = (pass_count / total_count) * 100
-        fail_percentage = (fail_count / total_count) * 100
-          
-          # Display the results
-        result_df = pd.DataFrame(result, columns=['Predicted Grades Of All'])
-          
-          # Display pass and fail percentages
-        st.write(f"Pass Percentage: {pass_percentage:.2f}%")
-        st.write(f"Fail Percentage: {fail_percentage:.2f}%")
-          
-          # Create subplots for charts with natural colors
-        fig, axes = plt.subplots(2, 2, figsize=(12, 10))
-          
-          # Line chart
-        axes[0, 0].plot(result_df.index, result_df['Predicted Grades Of All'], marker='o', linestyle='-', color='#1f77b4')  # Blue line
-        axes[0, 0].set_title('Predicted Grades')
-        axes[0, 0].set_xlabel('Student ID')
-        axes[0, 0].set_ylabel('Grades')
-          
-          # Bar chart
-        axes[0, 1].bar(['Pass', 'Fail'], [pass_percentage, fail_percentage], color=['#1f77b4', '#ff7f0e'])  # Blue and orange bars
-        axes[0, 1].set_title('Pass vs Fail Percentage')
-        axes[0, 1].set_ylabel('Percentage')
-          
-          # Pie chart
-        axes[1, 0].pie([pass_percentage, fail_percentage], labels=['Pass', 'Fail'], autopct='%1.1f%%', colors=['#1f77b4', '#ff7f0e'])  # Blue and orange pie chart
-        axes[1, 0].set_title('Pass vs Fail Percentage')
-          
-          # Additional chart (Histogram example)
-        axes[1, 1].hist(result_df['Predicted Grades Of All'], bins=20, color='#2ca02c', alpha=0.75)  # Green histogram
-        axes[1, 1].set_title('Distribution of Predicted Grades')
-        axes[1, 1].set_xlabel('Grades')
-        axes[1, 1].set_ylabel('Frequency')
-          
-          # Adjust layout
-        fig.tight_layout()
-          
-          # Show plot in Streamlit
-        st.pyplot(fig)
-      
-      
+    if st.button('Predict'):
+       selected_data = orignal_list[select]
+        
+        # Ensure the data is in the correct shape
+       selected_data_array = selected_data.values
+        
+        # Ensure there are no NaN values
+       if np.any(np.isnan(selected_data_array)):
+          st.error("Selected dataset contains NaN values. Please clean the data.")
+      else:
+            # Make predictions
+          result = Model.predict(selected_data_array)
+            
+            # Calculate pass and fail percentages
+          pass_count = np.sum(result >= 50)
+          fail_count = np.sum(result < 50)
+            
+          total_count = len(result)
+            
+          pass_percentage = (pass_count / total_count) * 100
+          fail_percentage = (fail_count / total_count) * 100
+            
+            # Display the results
+          result_df = pd.DataFrame(result, columns=['Predicted Grades Of All'])
+            
+            # Display pass and fail percentages
+          st.write(f"Pass Percentage: {pass_percentage:.2f}%")
+          st.write(f"Fail Percentage: {fail_percentage:.2f}%")
+            
+            # Create subplots for charts with natural colors
+          fig, axes = plt.subplots(2, 2, figsize=(12, 10))
+            
+            # Line chart
+          axes[0, 0].plot(result_df.index, result_df['Predicted Grades Of All'], marker='o', linestyle='-', color='#1f77b4')  # Blue line
+          axes[0, 0].set_title('Predicted Grades')
+          axes[0, 0].set_xlabel('Student ID')
+          axes[0, 0].set_ylabel('Grades')
+            
+            # Bar chart
+          axes[0, 1].bar(['Pass', 'Fail'], [pass_percentage, fail_percentage], color=['#1f77b4', '#ff7f0e'])  # Blue and orange bars
+          axes[0, 1].set_title('Pass vs Fail Percentage')
+          axes[0, 1].set_ylabel('Percentage')
+            
+            # Pie chart
+          axes[1, 0].pie([pass_percentage, fail_percentage], labels=['Pass', 'Fail'], autopct='%1.1f%%', colors=['#1f77b4', '#ff7f0e'])  # Blue and orange pie chart
+          axes[1, 0].set_title('Pass vs Fail Percentage')
+            
+            # Additional chart (Histogram example)
+          axes[1, 1].hist(result_df['Predicted Grades Of All'], bins=20, color='#2ca02c', alpha=0.75)  # Green histogram
+          axes[1, 1].set_title('Distribution of Predicted Grades')
+          axes[1, 1].set_xlabel('Grades')
+          axes[1, 1].set_ylabel('Frequency')
+            
+            # Adjust layout
+          fig.tight_layout()
+            
+            # Show plot in Streamlit
+          st.pyplot(fig)
+        
+        

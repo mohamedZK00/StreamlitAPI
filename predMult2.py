@@ -26,8 +26,6 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Load the model
-model = pickle.load(open(r'F:\RFR_MZ_New.pik', 'rb'))
 
 # Create random grades for students
 num_students = 1000

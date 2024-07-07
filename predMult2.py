@@ -22,71 +22,7 @@ with st.sidebar:
 
 
 
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
 
-
-# Create random grades for students
-num_students = 1000
-np.random.seed(42)
-grades_month1 = np.random.randint(40, 75, num_students)
-grades_month2 = np.random.randint(75, 101, num_students)
-grades_month3 = np.random.randint(90, 101, num_students)
-
-students_df = pd.DataFrame({
-    'Student_ID': range(1, num_students + 1),
-    'Grade_Month1': grades_month1,
-    'Grade_Month2': grades_month2,
-    'Grade_Month3': grades_month3
-})
-
-data_1 = students_df.drop('Student_ID', axis=1)
-
-num_students = 1500
-grades_month1 = np.random.randint(43, 49, num_students)
-grades_month2 = np.random.randint(55, 80, num_students)
-grades_month3 = np.random.randint(50, 65, num_students)
-
-students_df_1 = pd.DataFrame({
-    'Student_ID': range(1, num_students + 1),
-    'Grade_Month1': grades_month1,
-    'Grade_Month2': grades_month2,
-    'Grade_Month3': grades_month3
-})
-
-data_2 = students_df_1.drop('Student_ID', axis=1)
-
-num_students = 2000
-grades_month1 = np.random.randint(40, 49, num_students)
-grades_month2 = np.random.randint(45, 50, num_students)
-grades_month3 = np.random.randint(38, 49, num_students)
-
-students_df_2 = pd.DataFrame({
-    'Student_ID': range(1, num_students + 1),
-    'Grade_Month1': grades_month1,
-    'Grade_Month2': grades_month2,
-    'Grade_Month3': grades_month3
-})
-
-data_3 = students_df_2.drop('Student_ID', axis=1)
-
-# Combine all data into one DataFrame
-combined_data = pd.concat([data_1, data_2, data_3])
-
-# Streamlit UI
-st.title('Prediction Of Total Grades for All Students & Statisticas ')
-st.info('Grades Prediction Passing & Failing ')
-
-orignal_list = {
-    '1-Grades for 1000 Students': data_1,
-    '2-Grades for 1500 Students': data_2,
-    '3-Grades for 2000 Students': data_3,
-    '4-All Combined Grades': combined_data
-}
-
-select = st.selectbox('Select Your Set Of Grades', list(orignal_list.keys()))
-    
 
 
 # Predict student grades
@@ -161,7 +97,71 @@ if selected == 'Classification of Student Grades':
        clas_grades = [classify_grade(grade) for grade in classified_grades ]
        st.success( clas_grades)
 
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
 
+
+# Create random grades for students
+num_students = 1000
+np.random.seed(42)
+grades_month1 = np.random.randint(40, 75, num_students)
+grades_month2 = np.random.randint(75, 101, num_students)
+grades_month3 = np.random.randint(90, 101, num_students)
+
+students_df = pd.DataFrame({
+    'Student_ID': range(1, num_students + 1),
+    'Grade_Month1': grades_month1,
+    'Grade_Month2': grades_month2,
+    'Grade_Month3': grades_month3
+})
+
+data_1 = students_df.drop('Student_ID', axis=1)
+
+num_students = 1500
+grades_month1 = np.random.randint(43, 49, num_students)
+grades_month2 = np.random.randint(55, 80, num_students)
+grades_month3 = np.random.randint(50, 65, num_students)
+
+students_df_1 = pd.DataFrame({
+    'Student_ID': range(1, num_students + 1),
+    'Grade_Month1': grades_month1,
+    'Grade_Month2': grades_month2,
+    'Grade_Month3': grades_month3
+})
+
+data_2 = students_df_1.drop('Student_ID', axis=1)
+
+num_students = 2000
+grades_month1 = np.random.randint(40, 49, num_students)
+grades_month2 = np.random.randint(45, 50, num_students)
+grades_month3 = np.random.randint(38, 49, num_students)
+
+students_df_2 = pd.DataFrame({
+    'Student_ID': range(1, num_students + 1),
+    'Grade_Month1': grades_month1,
+    'Grade_Month2': grades_month2,
+    'Grade_Month3': grades_month3
+})
+
+data_3 = students_df_2.drop('Student_ID', axis=1)
+
+# Combine all data into one DataFrame
+combined_data = pd.concat([data_1, data_2, data_3])
+
+# Streamlit UI
+st.title('Prediction Of Total Grades for All Students & Statisticas ')
+st.info('Grades Prediction Passing & Failing ')
+
+orignal_list = {
+    '1-Grades for 1000 Students': data_1,
+    '2-Grades for 1500 Students': data_2,
+    '3-Grades for 2000 Students': data_3,
+    '4-All Combined Grades': combined_data
+}
+
+select = st.selectbox('Select Your Set Of Grades', list(orignal_list.keys()))
+    
 
 if selected == 'Grades Prediction Passing & Failing For All Students':
     

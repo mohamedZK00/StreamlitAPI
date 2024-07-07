@@ -18,7 +18,7 @@ with st.sidebar:
     options = ['Prediction Of Total Grades for All Students & Statisticas',
                'Predict Student Grades',
                'Classification of Student Grades']
-    icons = ['percent', 'mortarboard-fill', 'chart-pie']
+    icons = ['pie','percent', 'mortarboard-fill']
 
     selected = option_menu('Multiple Student Grade Prediction System', options, icons=icons, default_index=0)
 

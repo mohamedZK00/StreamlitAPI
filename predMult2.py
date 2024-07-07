@@ -20,10 +20,6 @@ with st.sidebar:
     options = ['Prediction Of Total Grades for All Students & Statisticas', 'Predict Student Grades', 'Classification of Student Grades']
     icons = ['percent', 'mortarboard-fill', 'chart-pie']
 
-    # Remove 'Prediction Of Total Grades for All Students & Statisticas' option if selected
-    if selected == 'Prediction Of Total Grades for All Students & Statisticas':
-        options.remove('Prediction Of Total Grades for All Students & Statisticas')
-
     selected = option_menu('Multiple Student Grade Prediction System', options, icons=icons, default_index=0)
 
 # Define data for random grades

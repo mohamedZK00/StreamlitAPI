@@ -106,7 +106,7 @@ if selected == 'Grades Prediction Passing & Failing For All Students':
   
     import pandas as pd
     import numpy as np
-       import matplotlib.pyplot as plt
+    import matplotlib.pyplot as plt
     
     # Load the model
     

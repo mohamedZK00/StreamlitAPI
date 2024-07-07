@@ -1,108 +1,28 @@
 import os
 import pickle
 import streamlit as st
-from streamlit_option_menu import option_menu
-
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+from streamlit_option_menu import option_menu
 
-# Prediction Model
+# Load the prediction model
 working_dir = os.path.dirname(os.path.realpath(__file__))
-model_path = os.path.join(working_dir ,'gbR94.sav')
+model_path = os.path.join(working_dir, 'gbR94.sav')
 
 with open(model_path, 'rb') as f:
     Model = pickle.load(f)
 
 # Sidebar for navigation
 with st.sidebar:
-    # Define the options with icons
-    options = ['Prediction Of Total Grades for All Students & Statisticas', 'Predict Student Grades', 'Classification of Student Grades']
+    options = ['Prediction Of Total Grades for All Students & Statisticas',
+               'Predict Student Grades',
+               'Classification of Student Grades']
     icons = ['percent', 'mortarboard-fill', 'chart-pie']
 
     selected = option_menu('Multiple Student Grade Prediction System', options, icons=icons, default_index=0)
 
-# Define data for random grades
-
-
-# Predict student grades
-if selected == 'Predict Student Grades':
-    # Page title
-    st.title('Predict Student Grades using ML')
-
-    grade_month_1 = st.text_input('degree of Mo.1')
-    grade_month_2 = st.text_input('degree of Mo.2')
-    grade_month_3 = st.text_input('degree of Mo.3')
-
-    # Code for prediction
-    pred_Grd = ''
-
-    # Creating a button for prediction
-    if st.button('Grade prediction'):
-        grd_pred = Model.predict([[grade_month_1, grade_month_2, grade_month_3]])
-
-        predicted_grade = {"grd_pred": round(grd_pred[0], 1)}
-        max_grade = 100
-        predicted_percentage = round((predicted_grade["grd_pred"] / max_grade) * 100, 1)
-        formatted_result = "Student grade : {:.1f}%".format(predicted_percentage)
-
-        st.success(formatted_result)
-
-# Classification of student grades
-if selected == 'Classification of Student Grades':
-    # Page title
-    st.title('Classification of Student Grades using ML')
-
-    grade_month_1 = st.text_input('degree of Mo.1')
-    grade_month_2 = st.text_input('degree of Mo.2')
-    grade_month_3 = st.text_input('degree of Mo.3')
-
-    # Code for prediction
-    Cls_Grd = ''
-
-    # Creating a button for prediction
-    if st.button('Grade Classification '):
-        ls_pred = Model.predict([[grade_month_1, grade_month_2, grade_month_3]])
-
-        def classify_grade(grade):
-            if grade >= 90:
-                return 'A'
-            elif grade >= 80:
-                return 'B'
-            elif grade >= 70:
-                return 'C'
-            elif grade >= 60:
-                return 'D'
-            elif grade >= 50:
-                return 'E'
-            else:
-                return 'F'
-
-        classified_grades = [classify_grade(grade) for grade in ls_pred]
-        st.success(classified_grades)
-
-        def classify_grade(grade):
-            if grade == 'A':
-                return 'Excellent'
-            elif grade == 'B':
-                return 'Very Good'
-            elif grade == 'C':
-                return 'Good'
-            elif grade == 'D':
-                return 'Satisfactory'
-            elif grade == 'E':
-                return 'Sufficient'
-            else:
-                return 'Fail'
-
-        clas_grades = [classify_grade(grade) for grade in classified_grades]
-        st.success(clas_grades)
-
-
-
-
-
-
+# Define data for random grades (assuming these are for the example data)
 num_students = 1000
 np.random.seed(42)
 grades_month1 = np.random.randint(40, 75, num_students)
@@ -149,74 +69,126 @@ data_3 = students_df_2.drop('Student_ID', axis=1)
 # Combine all data into one DataFrame
 combined_data = pd.concat([data_1, data_2, data_3])
 
-# Streamlit UI
-st.title('Prediction Of Total Grades for All Students & Statisticas ')
-st.info('Grades Prediction Passing & Failing ')
+# Page for Prediction Of Total Grades for All Students & Statistics
+if selected == 'Prediction Of Total Grades for All Students & Statisticas':
+    st.title('Prediction Of Total Grades for All Students & Statisticas')
 
-original_list = {
-    '1-Grades for 1000 Students': data_1,
-    '2-Grades for 1500 Students': data_2,
-    '3-Grades for 2000 Students': data_3,
-    '4-All Combined Grades': combined_data
-}
+    st.info('Grades Prediction Passing & Failing')
 
-select = st.selectbox('Select Your Set Of Grades', list(original_list.keys()))
+    original_list = {
+        '1-Grades for 1000 Students': data_1,
+        '2-Grades for 1500 Students': data_2,
+        '3-Grades for 2000 Students': data_3,
+        '4-All Combined Grades': combined_data
+    }
 
-if st.button('Predict'):
-    selected_data = original_list[select]
+    select = st.selectbox('Select Your Set Of Grades', list(original_list.keys()))
 
-    # Ensure the data is in the correct shape
-    selected_data_array = selected_data.values
+    if st.button('Predict'):
+        selected_data = original_list[select]
 
-    # Ensure there are no NaN values
-    if np.any(np.isnan(selected_data_array)):
-        st.error("Selected dataset contains NaN values. Please clean the data.")
-    else:
-        # Make predictions
-        result = Model.predict(selected_data_array)
+        selected_data_array = selected_data.values
 
-        # Calculate pass and fail percentages
-        pass_count = np.sum(result >= 50)
-        fail_count = np.sum(result < 50)
+        if np.any(np.isnan(selected_data_array)):
+            st.error("Selected dataset contains NaN values. Please clean the data.")
+        else:
+            result = Model.predict(selected_data_array)
 
-        total_count = len(result)
+            pass_count = np.sum(result >= 50)
+            fail_count = np.sum(result < 50)
 
-        pass_percentage = (pass_count / total_count) * 100
-        fail_percentage = (fail_count / total_count) * 100
+            total_count = len(result)
 
-        # Display the results
-        result_df = pd.DataFrame(result, columns=['Predicted Grades Of All'])
+            pass_percentage = (pass_count / total_count) * 100
+            fail_percentage = (fail_count / total_count) * 100
 
-        # Display pass and fail percentages
-        st.write(f"Pass Percentage: {pass_percentage:.2f}%")
-        st.write(f"Fail Percentage: {fail_percentage:.2f}%")
+            result_df = pd.DataFrame(result, columns=['Predicted Grades Of All'])
 
-        # Create subplots for charts with natural colors
-        fig, axes = plt.subplots(2, 2, figsize=(12, 10))
+            st.write(f"Pass Percentage: {pass_percentage:.2f}%")
+            st.write(f"Fail Percentage: {fail_percentage:.2f}%")
 
-        # Line chart
-        axes[0, 0].plot(result_df.index, result_df['Predicted Grades Of All'], marker='o', linestyle='-', color='#1f77b4')  # Blue line
-        axes[0, 0].set_title('Predicted Grades')
-        axes[0, 0].set_xlabel('Student ID')
-        axes[0, 0].set_ylabel('Grades')
+            fig, axes = plt.subplots(2, 2, figsize=(12, 10))
 
-        # Bar chart
-        axes[0, 1].bar(['Pass', 'Fail'], [pass_percentage, fail_percentage], color=['#1f77b4', '#ff7f0e'])  # Blue and orange bars
-        axes[0, 1].set_title('Pass vs Fail Percentage')
-        axes[0, 1].set_ylabel('Percentage')
+            axes[0, 0].plot(result_df.index, result_df['Predicted Grades Of All'], marker='o', linestyle='-', color='#1f77b4')
+            axes[0, 0].set_title('Predicted Grades')
+            axes[0, 0].set_xlabel('Student ID')
+            axes[0, 0].set_ylabel('Grades')
 
-        # Pie chart
-        axes[1, 0].pie([pass_percentage, fail_percentage], labels=['Pass', 'Fail'], autopct='%1.1f%%', colors=['#1f77b4', '#ff7f0e'])  # Blue and orange pie chart
-        axes[1, 0].set_title('Pass vs Fail Percentage')
+            axes[0, 1].bar(['Pass', 'Fail'], [pass_percentage, fail_percentage], color=['#1f77b4', '#ff7f0e'])
+            axes[0, 1].set_title('Pass vs Fail Percentage')
+            axes[0, 1].set_ylabel('Percentage')
 
-        # Additional chart (Histogram example)
-        axes[1, 1].hist(result_df['Predicted Grades Of All'], bins=20, color='#2ca02c', alpha=0.75)  # Green histogram
-        axes[1, 1].set_title('Distribution of Predicted Grades')
-        axes[1, 1].set_xlabel('Grades')
-        axes[1, 1].set_ylabel('Frequency')
+            axes[1, 0].pie([pass_percentage, fail_percentage], labels=['Pass', 'Fail'], autopct='%1.1f%%', colors=['#1f77b4', '#ff7f0e'])
+            axes[1, 0].set_title('Pass vs Fail Percentage')
 
-        # Adjust layout
-        fig.tight_layout()
+            axes[1, 1].hist(result_df['Predicted Grades Of All'], bins=20, color='#2ca02c', alpha=0.75)
+            axes[1, 1].set_title('Distribution of Predicted Grades')
+            axes[1, 1].set_xlabel('Grades')
+            axes[1, 1].set_ylabel('Frequency')
 
-        # Show plot in Streamlit
-        st.pyplot(fig)
+            fig.tight_layout()
+
+            st.pyplot(fig)
+
+# Page for Predict Student Grades
+elif selected == 'Predict Student Grades':
+    st.title('Predict Student Grades using ML')
+
+    grade_month_1 = st.text_input('Degree of Month 1')
+    grade_month_2 = st.text_input('Degree of Month 2')
+    grade_month_3 = st.text_input('Degree of Month 3')
+
+    if st.button('Grade Prediction'):
+        grd_pred = Model.predict([[grade_month_1, grade_month_2, grade_month_3]])
+
+        predicted_grade = {"grd_pred": round(grd_pred[0], 1)}
+        max_grade = 100
+        predicted_percentage = round((predicted_grade["grd_pred"] / max_grade) * 100, 1)
+        formatted_result = "Student grade : {:.1f}%".format(predicted_percentage)
+
+        st.success(formatted_result)
+
+# Page for Classification of Student Grades
+elif selected == 'Classification of Student Grades':
+    st.title('Classification of Student Grades using ML')
+
+    grade_month_1 = st.text_input('Degree of Month 1')
+    grade_month_2 = st.text_input('Degree of Month 2')
+    grade_month_3 = st.text_input('Degree of Month 3')
+
+    if st.button('Grade Classification'):
+        ls_pred = Model.predict([[grade_month_1, grade_month_2, grade_month_3]])
+
+        def classify_grade(grade):
+            if grade >= 90:
+                return 'A'
+            elif grade >= 80:
+                return 'B'
+            elif grade >= 70:
+                return 'C'
+            elif grade >= 60:
+                return 'D'
+            elif grade >= 50:
+                return 'E'
+            else:
+                return 'F'
+
+        classified_grades = [classify_grade(grade) for grade in ls_pred]
+        st.success(classified_grades)
+
+        def classify_grade_description(grade):
+            if grade == 'A':
+                return 'Excellent'
+            elif grade == 'B':
+                return 'Very Good'
+            elif grade == 'C':
+                return 'Good'
+            elif grade == 'D':
+                return 'Satisfactory'
+            elif grade == 'E':
+                return 'Sufficient'
+            else:
+                return 'Fail'
+
+        clas_grades = [classify_grade_description(grade) for grade in classified_grades]
+        st.success(clas_grades)

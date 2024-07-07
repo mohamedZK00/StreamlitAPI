@@ -85,6 +85,8 @@ orignal_list = {
     '4-All Combined Grades': combined_data
 }
 
+select = st.selectbox('Select Your Set Of Grades', list(orignal_list.keys()))
+    
 
 
 # Predict student grades
@@ -163,7 +165,6 @@ if selected == 'Classification of Student Grades':
 
 if selected == 'Grades Prediction Passing & Failing For All Students':
     
-    select = st.selectbox('Select Your Set Of Grades', list(orignal_list.keys()))
     
     if st.button('Predict'):
         selected_data = orignal_list[select]
